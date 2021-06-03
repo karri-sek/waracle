@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -10,7 +10,10 @@ import IconButton from '@material-ui/core/IconButton';
 import { updateCat } from '../../actions';
 import { red } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
-import { likeCat, deleteFavorite } from '../../services/catService';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import ThumbDownIcon from '@material-ui/icons/ThumbDown';
+import CardContent from '@material-ui/core/CardContent';
+import { likeCat, deleteFavorite, voteCat, getCatScore } from '../../services/catService';
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
@@ -23,20 +26,35 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
         backgroundColor: red[500],
     },
+    thumbsUp: {
+        cursor: 'pointer',
+        paddingRight: '20px',
+    },
 }));
 
-const handleUnFavoriteClick = async (cat) => {
-    await deleteFavorite(cat);
-    cat.favID = undefined;
-    updateCat(cat);
-};
 const CatImage = ({ cat, updateCat }) => {
+    
     const classes = useStyles();
     const [buttonText, setButtonText] = useState('favorite');
+    const [score, setScore] = useState('');
+    useEffect(()=>{
+        (async()=>{
+            const response = await getCatScore();
+            setScore(response.data[0].value);
+        })();
+    },[])
     const handleFavoriteClick = async (cat) => {
         const response = await likeCat(cat);
         cat['favID'] = response.data.id;
         updateCat(cat);
+    };
+    const handleUnFavoriteClick = async (cat) => {
+        await deleteFavorite(cat);
+        cat.favID = undefined;
+        updateCat(cat);
+    };
+    const handleThumbClick = async (cat, value) => {
+        await voteCat(cat, value);
     };
 
     return (
@@ -61,7 +79,11 @@ const CatImage = ({ cat, updateCat }) => {
                     >
                         {buttonText}
                     </IconButton>
+                        <ThumbUpIcon className={classes.thumbsUp} onClick={(e) => handleThumbClick(cat, 1)} />
+                        <ThumbDownIcon className={classes.thumbsUp} onClick={(e) => handleThumbClick(cat, 0)} />
                 </CardActions>
+                <CardContent>score: {score}</CardContent>
+                
             </Card>
         </Grid>
     );

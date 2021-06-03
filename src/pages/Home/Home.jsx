@@ -18,8 +18,8 @@ const Home = ({ cats }) => {
                 </LinkRouter>
             </Breadcrumbs>
             <Grid container spacing={3}>
-                {cats.map((cat) => (
-                    <CatImage cat={cat} />
+                {cats.map((cat, index) => (
+                    <CatImage key={index} cat={cat} />
                 ))}
             </Grid>
         </>
