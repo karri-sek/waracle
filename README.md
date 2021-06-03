@@ -13,8 +13,16 @@ Axios package used to make the API calls to the Cat Catalogue.
 
 No Tests are provided for this exercise, but I am happy to do cover those during the tech call.
 
-UI is medicore level since the styling those can be done based on our preference during the call probably .
+UI is mediocre level since the styling those can be done based on our preference during the call probably .
 
+Points I care about on this exercise:
+1) Focused more on the solution and integrating the api's
+2) A workable solution and a happy journey
+
+Improvements:
+1) A lot many ways this can be improved, but being a first stage and the time i have . I focused much on the solution.
+2) regarding the score API,  i did not get the concept, since the app does not provide the login for customers. Always use the one sub_id since it is used by only one customer at a time.
+3) UI , definitely this is the place can be improved a lot. But given the time I can do or free to talk on that.
 
 Requests:
 
