@@ -7,6 +7,7 @@ And more like he can vote the cats based on his choice and each cat image is tag
 1) Go the the Root directory
 2) run the command yarn
 3) run the command yarn start
+### netlify link: https://romantic-jackson-e5da3f.netlify.app/
 Tech Aspects:
 
 ### developer view points 
