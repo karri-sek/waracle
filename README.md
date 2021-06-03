@@ -6,7 +6,10 @@ I have done this test using React JS and Redux and Material UI. This task covers
 Where a user can upload a cat Image at /upload Route and can view the uploaded cat images at / route.
 He can also other stuff like fav/unfavorite the cat images by using the buttons below of the cat image.
 And more like he can vote the cats based on his choice and each cat image is tagged with score card.
-
+### How to run the application:
+1) Go the the Root directory
+2) run the command yarn
+3) run the command yarn start
 Tech Aspects:
 
 Axios package used to make the API calls to the Cat Catalogue.
